@@ -4,6 +4,10 @@ Spanish-first, responsive showcase for the in-development Christian social app S
 
 No build or dependencies required. Serve `dist/` with `python3 -m http.server 4173 --directory dist`.
 
+Pages: `index.html` introduces Selah and its app features; `equipo.html` presents founder Kevin Isaac G.C. and designer Dulce Lluvia M.C. The founder portrait is supplied by the project owner.
+
+Community coverage includes topic groups (up to 8 members and 2 memberships per person, based on the Selah group specifications), testimonies, and prayer requests. The website presents these app features; it does not accept posts, prayers, or group memberships.
+
 Features: screenshot phone frames, animated hero, accessible interactive screenshot tabs, FAQ disclosures, native sharing or clipboard fallback, scroll reveals, and reduced-motion support. Original supplied images are retained in the parent folder; optimized website copies live in `dist/assets`.
 
 There is no email collection, launch date, download link, or fabricated testimonial. App features are labeled as in development. The SELAH wordmark uses Hurricane Regular. Site text uses Arimo Regular and Bold, with Avenir and Arial fallbacks. Fonts load through Google Fonts.
