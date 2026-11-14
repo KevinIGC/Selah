@@ -243,3 +243,28 @@ footer>a:not(.brand){font-size:12px;color:var(--white)}
   header .nav-cta{font-size:9px;padding:8px}
   .hero .heading-star{right:-22px;width:16px}
 }
+
+/* Let the founder portrait sit naturally within his biography. */
+.founder-section .founder-portrait{
+  align-self:center;
+  min-height:0;
+  border:0;
+  border-radius:0;
+  background:radial-gradient(ellipse at 50% 55%,#d6be801c,transparent 68%);
+  overflow:hidden;
+}
+.founder-section .founder-portrait img{
+  width:110%;
+  margin:0 -5%;
+  mask-image:linear-gradient(to bottom,#000 78%,transparent 100%);
+  -webkit-mask-image:linear-gradient(to bottom,#000 78%,transparent 100%);
+}
+.founder-portrait .portrait-label,
+.founder-portrait .portrait-caption,
+.founder-portrait .portrait-halo{display:none}
+.founder-portrait .portrait-star{top:12%;right:8%;font-size:30px}
+@media(max-width:700px){
+  .founder-section .founder-portrait{max-width:380px;width:100%;margin-bottom:-12px}
+  .founder-section .founder-portrait img{width:110%;margin:0 -5%}
+  .founder-portrait .portrait-star{font-size:24px}
+}
