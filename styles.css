@@ -62,3 +62,91 @@ nav a[aria-current=page],.inline-link{color:var(--gold)}
 .help-selah{text-align:center;border-top:1px solid var(--line);padding-top:75px;padding-bottom:80px}.help-selah .eyebrow{justify-content:center}.help-selah h2{margin-top:25px}.help-selah>p{max-width:650px;margin:0 auto 22px;color:var(--muted);font-size:14px}.help-selah .button{margin-top:10px}@media(max-width:700px){.help-selah{padding-top:55px;padding-bottom:60px}.help-selah h2{font-size:35px}.help-selah>p{font-size:13px}}
 
 .help-prompt{max-width:650px;margin:30px auto;padding:25px 30px;border:1px solid #d6be8055;border-radius:18px;background:var(--surface,#111110);text-align:left}.help-prompt h3{margin:0 0 10px;font-size:24px;color:var(--gold)}.help-prompt p{margin:0 0 12px;color:var(--white);font-size:14px}.help-prompt ul{margin:0;padding-left:20px;color:var(--muted);font-size:14px}.help-prompt li{margin:10px 0}.help-prompt strong{color:var(--white)}.team-roles{margin-top:28px;padding-top:20px;border-top:1px solid var(--line)}.team-roles p{margin:8px 0 0;font-size:13px;line-height:1.9;color:var(--gold)}@media(max-width:700px){.help-prompt{padding:22px}.help-prompt ul{font-size:13px}}
+
+/* Shared control treatment: warm surfaces, clear edges, and generous tap areas. */
+:root{
+  --control-bg:#1b1913;
+  --control-border:#847448;
+  --control-hover:#2c2619;
+  --control-shadow:0 2px 0 #0005;
+}
+:is(.button,.nav-cta,.text-link,.back-link,.inline-link,nav a,:where(footer)>a:not(.brand),.tabs button){
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  min-height:48px;
+  padding:12px 20px;
+  border:1px solid var(--control-border);
+  border-radius:30px;
+  background:var(--control-bg);
+  color:var(--white);
+  font-size:13px;
+  font-weight:700;
+  line-height:1.4;
+  text-align:center;
+  text-decoration:none;
+  box-shadow:var(--control-shadow);
+  touch-action:manipulation;
+  transition:background-color .2s,border-color .2s,box-shadow .2s,transform .2s;
+}
+.button{gap:28px;min-height:52px;padding:14px 24px}
+.button.gold,.tabs button[aria-selected=true],nav a[aria-current=page]{
+  background:#d6be80;
+  border-color:#d6be80;
+  color:#211b10;
+}
+header .nav-cta{color:var(--gold);border-color:var(--gold)}
+.nav-cta span,.text-link span{margin-left:0;color:inherit}
+nav{gap:8px}
+nav a{white-space:nowrap;min-height:44px;padding:10px 14px;font-size:12px}
+.hero-actions{gap:12px}
+.hero-actions .text-link{min-height:52px}
+.back-link{margin-bottom:45px}
+.inline-link{margin-top:12px;text-underline-offset:4px}
+footer>a:not(.brand){font-size:12px;color:var(--white)}
+.tabs{gap:8px;overflow:visible}
+.tabs button{flex:1;min-width:0;padding:11px 12px;font-size:12px}
+.tabs button[aria-selected=true]{box-shadow:0 2px 0 #0005,inset 0 0 0 1px #211b1026}
+.faq-list{display:flex;flex-direction:column;gap:12px}
+.faq-list details{border:1px solid var(--control-border);border-radius:16px;background:var(--control-bg);overflow:visible}
+.faq-list summary{min-height:64px;padding:18px 20px;align-items:center;border-radius:15px;font-weight:700;line-height:1.5;transition:background-color .2s}
+.faq-list summary span{display:flex;align-items:center;justify-content:center;flex-shrink:0;width:30px;height:30px;border:1px solid var(--control-border);border-radius:50%;background:var(--bg)}
+.faq-list details[open]{border-color:var(--gold)}
+.faq-list details[open] summary{color:var(--gold)}
+.faq-list details p{padding:0 20px;margin:0 0 22px}
+@media(hover:hover){
+  :is(.button,.nav-cta,.text-link,.back-link,.inline-link,nav a,:where(footer)>a:not(.brand),.tabs button):hover{background:var(--control-hover);border-color:var(--gold);color:var(--gold);transform:translateY(-2px);box-shadow:0 5px 15px #0002}
+  :is(.gold,.tabs button[aria-selected=true],nav a[aria-current=page]):hover{background:#e5ce94;color:#211b10;border-color:#e5ce94}
+  .faq-list summary:hover{background:var(--control-hover)}
+}
+:is(.button,.nav-cta,.text-link,.back-link,.inline-link,nav a,:where(footer)>a:not(.brand),.tabs button):active{transform:translateY(1px);box-shadow:none}
+:is(button,a,summary,[tabindex]):focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+@media(prefers-color-scheme:light){
+  :root{--control-bg:#f0e9da;--control-border:#a58b55;--control-hover:#e8dcc2;--control-shadow:0 2px 0 #49381412}
+  .tabs button[aria-selected=true]{background:#d6be80;border-color:#806126;color:#211b10}
+}
+@media(min-width:701px) and (max-width:1100px){
+  header{height:auto;flex-wrap:wrap;padding-top:18px;padding-bottom:18px}
+  header nav{order:3;flex-basis:100%;justify-content:center}
+}
+@media(max-width:700px){
+  header{gap:14px}
+  header nav{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;padding-top:2px}
+  header nav a{min-height:48px;padding:10px 6px;font-size:11px;white-space:normal}
+  header .nav-cta{min-height:48px;padding:10px 14px;font-size:11px;gap:8px}
+  .hero-actions{align-items:stretch}
+  .hero-actions>a{flex:1 1 180px}
+  .hero-actions .button{justify-content:space-between}
+  .team-button,.help-selah .button,.team-purpose .button,.community .button{width:100%;max-width:360px}
+  .tabs button{min-height:48px;padding:10px 8px}
+  .back-link{margin-bottom:30px}
+  footer{gap:12px}
+  footer>a:not(.brand){flex:1 1 135px;min-height:48px}
+  .faq-list summary{padding:16px;gap:12px}
+  .faq-list details p{padding:0 16px}
+}
+@media(max-width:420px){
+  header nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  header nav a{font-size:12px}
+}
