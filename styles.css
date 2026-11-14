@@ -150,3 +150,96 @@ footer>a:not(.brand){font-size:12px;color:var(--white)}
   header nav{grid-template-columns:repeat(2,minmax(0,1fr))}
   header nav a{font-size:12px}
 }
+
+/* Mobile proportions: compact controls and previews, with room to read. */
+@media(max-width:700px){
+  html{scroll-padding-top:24px}
+  header{gap:10px;padding-top:12px;padding-bottom:12px}
+  header .brand{gap:8px}
+  header .brand span{font-size:28px}
+  header .brand img{width:19px;height:25px}
+  header nav{grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+  header nav a[href]{min-height:44px;font-size:10px;padding:7px 4px;border-radius:14px}
+  :is(.button,.text-link,.back-link,.inline-link,.tabs button),header .nav-cta,footer>a:not(.brand){
+    min-height:44px;padding:10px 16px;font-size:12px;gap:10px;box-shadow:none;
+  }
+  header .nav-cta{font-size:10px;padding:9px 12px;gap:6px}
+  .button span{font-size:16px}
+  .hero{padding-top:32px}
+  .hero h1{font-size:clamp(46px,13vw,64px);letter-spacing:-2px;margin:22px 0}
+  .hero .heading-star{right:-28px;bottom:8px;width:20px}
+  .hero-copy>p{max-width:100%;font-size:14px;line-height:1.75}
+  .hero-actions{gap:10px;margin-top:22px;align-items:flex-start}
+  .hero-actions>a{flex:0 1 auto}
+  .hero-actions .text-link{min-height:44px}
+  .hero-actions .button{justify-content:center}
+  .development{margin-top:20px;line-height:1.6}
+  .hero-art{transform:scale(.54);margin-top:30px;margin-bottom:-275px}
+  .section{padding-top:48px;padding-bottom:48px}
+  h2{font-size:clamp(29px,8.2vw,38px);letter-spacing:-1.2px;line-height:1.17;margin-bottom:22px}
+  .section-heading h2{margin-top:18px}
+  .section-heading>p{max-width:100%;margin-top:16px}
+  .vision-grid{margin-top:20px}
+  .vision .large-copy{font-size:18px}
+  .feature-details{padding:20px}
+  .tabs{gap:6px;padding-bottom:18px;margin-bottom:24px}
+  .tabs button{padding:9px 7px;font-size:11px}
+  .feature-details h3{font-size:24px;letter-spacing:-.7px}
+  .feature-details ul{margin:20px 0}
+  .feature-preview{min-height:440px;padding:24px 16px}
+  .demo-phone{width:165px;border-radius:29px;padding:5px}
+  .demo-phone img{border-radius:23px}
+  .screen-label{font-size:7px;letter-spacing:1px;margin-top:18px}
+  .growth-grid{margin-top:30px;gap:24px}
+  .growth-grid h3{font-size:21px}
+  .groups-copy,.group-topics,.faith-card{padding:22px}
+  .groups-copy h3,.faith-card h3{font-size:27px}
+  .group-facts{gap:20px;padding:18px 0;margin-top:20px}
+  .group-facts strong{font-size:25px}
+  .topic-row{gap:12px;padding:18px 0}
+  .topic-row h4{font-size:15px}
+  .topic-icon{width:34px;height:34px;font-size:20px}
+  .faith-grid{gap:16px;margin-top:16px}
+  .faith-symbol{font-size:72px;height:54px}
+  .prayer-symbol{font-size:42px}
+  .faith-card-footer{margin-top:22px;padding-top:18px}
+  .team-invitation{gap:20px}
+  .team-invitation h2,.help-selah h2{font-size:clamp(28px,7.7vw,35px)}
+  .team-invitation .team-button,.help-selah .button,.community .button{width:auto;max-width:100%}
+  .pause-section{padding:48px 6%}
+  .pause-section h2,.community h2{font-size:clamp(30px,8.5vw,39px)}
+  .pause-star{font-size:36px;margin-bottom:24px}
+  .pause-section p br{display:none}
+  .faq-list{gap:10px}
+  .faq-list summary{min-height:54px;padding:13px 14px;font-size:13px}
+  .faq-list summary span{width:25px;height:25px;font-size:19px}
+  .community{padding:36px 20px 30px;margin-bottom:40px}
+  .community h2{margin:22px 0}
+  .help-prompt{margin:24px auto;padding:20px}
+  .help-prompt h3{font-size:22px}
+  .team-intro{padding-top:24px;padding-bottom:20px}
+  .team-intro .back-link{margin-bottom:24px}
+  .team-intro h1{font-size:clamp(31px,8.4vw,42px);letter-spacing:-1.1px;line-height:1.16}
+  .team-intro-line{letter-spacing:.7px;font-size:7px;padding:18px 0}
+  .founder-section{padding-top:8px;gap:26px}
+  .founder-portrait{max-width:280px;align-self:start}
+  .founder-portrait img{width:100%;margin:60px 0 0}
+  .portrait-label{top:28px;font-size:8px;letter-spacing:1.2px}
+  .portrait-star{top:80px;right:22px;font-size:24px}
+  .portrait-caption{padding:24px 16px 16px;font-size:7px;letter-spacing:.8px}
+  .founder-bio h2,.designer-bio h2{font-size:30px}
+  .founder-bio .bio-lead,.designer-bio .bio-lead{font-size:18px}
+  .designer-section{gap:26px}
+  .designer-mark{min-height:180px;max-width:280px;width:100%;justify-self:center}
+  .designer-initials{font-size:72px}
+  .designer-mark .mini-label{margin-top:16px}
+  .designer-mark-star{top:20px;right:24px;font-size:22px}
+  footer>a:not(.brand){flex:0 1 auto}
+  .footer-bottom{flex-wrap:wrap;gap:8px;padding-top:18px}
+  .design-note{margin-top:28px;line-height:1.7}
+}
+@media(max-width:359px){
+  header nav{grid-template-columns:repeat(2,minmax(0,1fr))}
+  header .nav-cta{font-size:9px;padding:8px}
+  .hero .heading-star{right:-22px;width:16px}
+}
