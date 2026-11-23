@@ -6,6 +6,10 @@ No build or dependencies required. From the repository root, preview with `pytho
 
 Pages: `index.html` introduces Selah and its app features; `equipo.html` presents founder Kevin Isaac G.C. and designer Dulce Lluvia M.C. The founder portrait is supplied by the project owner.
 
+`privacy/index.html` adds the Spanish privacy policy at `/privacy` (served as `/privacy/` by static hosting). It includes an index, metadata, light/dark appearance, and links from both existing footers. Translation is left to the browser. The policy is visibly marked as a draft because the iOS implementation has not been verified. The supplied app Terms have now been reviewed and linked. See `PRIVACY-REVIEW.md` for the evidence, outstanding decisions, and GitHub Pages publication checks before using the URL for App Store or AdMob.
+
+`terms/index.html` serves `/terms` (redirecting to `/terms/` on directory-based static hosting). It presents a Spanish translation of the app's supplied Terms of Use, preserving all 16 sections, subsections 13.1–13.4, and the source revision date of November 6, 2026. It reuses the legal-page styling and links to the privacy policy. Both legal pages and the existing homepage/team footers link to Terms. This website translation does not modify the app's localization strings or verify its technical implementation.
+
 Community coverage includes topic groups (up to 8 members and 2 memberships per person, based on the Selah group specifications), testimonies, and prayer requests. The website presents these app features; it does not accept posts, prayers, or group memberships.
 
 Features: screenshot phone frames, animated hero, accessible interactive screenshot tabs, FAQ disclosures, native sharing or clipboard fallback, scroll reveals, and reduced-motion support. Original supplied images are retained in the parent folder; optimized website copies live in `assets`.
