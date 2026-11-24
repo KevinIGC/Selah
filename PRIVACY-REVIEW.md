@@ -1,6 +1,6 @@
 # Revisión de privacidad de Selah
 
-Revisión sustantiva: 23 de noviembre de 2026. **Borrador pendiente de aprobación.**
+Revisión sustantiva: 24 de noviembre de 2026. **Borrador pendiente de aprobación.**
 
 ## Implementación del sitio
 
@@ -19,14 +19,14 @@ El equipo proporcionó los strings de localización en inglés de los Términos 
 
 El correo `selah.app.unidos@gmail.com` figura en las páginas de inicio y equipo para colaborar con el proyecto. Es un contacto existente, pero su uso como buzón formal de privacidad debe confirmarse. Las páginas existentes cargan Microsoft Clarity con el identificador `zh9fbumaih`, sin panel de consentimiento en el código del repositorio. `styles.css` solicita Google Fonts. La nueva página usa esa hoja compartida y no incluye Clarity.
 
-El uso de Firebase y AES-GCM en notas privadas procede de la descripción del equipo. No se presenta como una auditoría de implementación. La integración de AdMob se describe como prevista.
+El uso de Firebase y AES-GCM en notas privadas procede de la descripción del equipo. No se presenta como una auditoría de implementación. La actualización del equipo del 24 de noviembre confirma Authentication, Firestore y Storage; preferencias del onboarding guardadas en Firebase; AES-GCM con recuperación de claves; SDK AdMob con anuncios nativos de prueba aproximadamente cada diez videos; UMP integrado con un mensaje configurado; y borrado del documento de publicaciones de video con intento de eliminación de archivos. Estas confirmaciones no son una auditoría del código iOS. Los intersticiales de trivia y el comportamiento del recomendador siguen sin verificar.
 
 ## Información y controles pendientes antes de aprobar
 
 1. Proporcionar el código de iOS y las configuraciones pertinentes para verificar cada afirmación. Los Términos ya fueron suministrados, revisados y añadidos en `/terms`. Mantener la versión web alineada con futuras revisiones de la app.
 2. Identificar al responsable del tratamiento y su domicilio, territorios de lanzamiento, jurisdicciones aplicables y canal formal de privacidad. No inferir una sociedad registrada ni una jurisdicción a partir del idioma del sitio.
 3. Inventariar campos de registro, proveedores de autenticación, perfiles, publicaciones, seguidores, mensajes/grupos, archivos, notificaciones, notas, oración, devocionales, lectura, trivia y compras. Confirmar campos obligatorios, permisos, visibilidad y finalidades reales. No incluir funciones musicales retiradas.
-4. Confirmar Authentication, Firestore, Storage y cualquier otro producto/SDK: datos que procesa, ubicaciones, acceso de administradores y terceros, reglas de seguridad, registros y transferencias internacionales. Verificar bases jurídicas y salvaguardas por territorio, incluidas las correspondientes a creencias religiosas u otros datos sensibles.
+4. Authentication, Firestore y Storage están confirmados por el equipo. Auditar su configuración y cualquier otro producto/SDK: datos que procesa, ubicaciones, acceso de administradores y terceros, reglas de seguridad, registros y transferencias internacionales. Verificar bases jurídicas y salvaguardas por territorio, incluidas las correspondientes a creencias religiosas u otros datos sensibles.
 5. Revisar AES-GCM: alcance exacto, claves, nonce, almacenamiento, sincronización, recuperación y copias. No ampliar la afirmación a conversaciones, diarios de oración u otros datos.
 6. Comprobar AdMob/mediación, versiones y datos de cada SDK, mensajes de UMP, actualización del consentimiento al iniciar, bloqueo de solicitudes hasta que estén permitidas, acceso para revisar decisiones cuando sea necesario y ATT cuando corresponda. Probar aceptación, rechazo, retirada y geografías de prueba. No usar creencias religiosas para segmentación personalizada.
 7. Definir edades/territorios admitidos y evaluar legislación sobre menores; comprobar registro, consentimiento parental cuando proceda y restricciones de anuncios/datos. No asumir que la clasificación de App Store o UMP resuelve estas obligaciones.
@@ -82,3 +82,11 @@ Las fuentes orientan la revisión; no certifican cumplimiento ni demuestran la c
 - Se conservaron las declaraciones del texto fuente sobre Reina-Valera 1909, la adaptación propia y KJV. Esta traducción no constituye una comprobación de derechos/licencias por territorio; esa comprobación sigue correspondiendo al equipo antes de publicar/distribuir los textos.
 - Se conserva la referencia original a canales oficiales de soporte en la sección 16. Los Términos no especifican un correo ni un flujo de apelación; no se inventaron. La confirmación del buzón de privacidad sigue pendiente.
 - Verificación de esta actualización: enlaces y fragmentos internos de las cuatro páginas válidos; 16 secciones, cuatro subsecciones de bloqueos, seis duraciones y fecha original comprobadas. Apertura directa y recarga de `/terms/`, navegación entre ambas páginas legales y diseño oscuro comprobados en navegador; sin desbordamiento horizontal a 390 y 1280 px y texto de párrafos a 16 px en móvil. No se ha publicado ni verificado la ruta en producción.
+
+## Actualización del 24 de noviembre de 2026
+
+Se incorporó la información suministrada por el equipo sobre las funciones implementadas, en pruebas y pendientes. Se conservan las 13 secciones, el diseño y los enlaces a los Términos. No se modifican las condiciones de uso ni los scripts de análisis.
+
+Clarity se volvió a comprobar en el código: inicio y equipo incluyen el script `zh9fbumaih`; privacidad y Términos no lo incluyen. No hay llamadas de consentimiento ni eventos personalizados de Clarity en el código del sitio inspeccionado. No se verificaron el panel del servicio, los eventos automáticos reales, cookies efectivas, finalidad concreta, consentimiento ni enmascaramiento; no deben presentarse como hechos comprobados.
+
+Pendientes adicionales: verificar cómo influyen las preferencias del onboarding en el feed, si se registran interacciones o visualizaciones para recomendaciones y si el usuario puede modificar sus preferencias. No atribuir a mensajes, notas, oraciones o reflexiones un uso para recomendaciones sin prueba. Auditar borrado de videos/miniaturas, comentarios, mensajes, notas/claves, datos de Firestore y Authentication, preferencias/progreso/historial y copias. Mantener sin definir edades, territorios, identidad legal, correo oficial de privacidad, regiones, transferencias y plazos hasta recibir confirmación.
