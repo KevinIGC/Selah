@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Página no encontrada — Selah</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Arimo:wght@400;700&family=Hurricane&display=swap">
+  <style>
+    :root {
+      color-scheme: dark;
+      --background: #090909;
+      --text: #f5f2eb;
+      --muted: #a4a29c;
+      --accent: #d6be80;
+    }
+    @media (prefers-color-scheme: light) {
+      :root {
+        color-scheme: light;
+        --background: #faf8f3;
+        --text: #24221d;
+        --muted: #625e54;
+        --accent: #806126;
+      }
+    }
+    body {
+      box-sizing: border-box;
+      min-height: 100vh;
+      margin: 0;
+      padding: 24px;
+      display: grid;
+      place-items: center;
+      background: var(--background);
+      color: var(--text);
+      font-family: Arimo, Arial, sans-serif;
+      position: relative;
+      isolation: isolate;
+    }
+    .logo-glow {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      background: radial-gradient(ellipse min(75vw, 480px) min(45vh, 320px) at center, #d6be802b, transparent);
+      animation: reveal-logo 3.5s ease-out both;
+    }
+    .logo-star {
+      grid-area: 1 / 1;
+      width: min(54vw, 20rem, 41vh);
+      transform: translateY(-6%);
+      opacity: .24;
+      filter: drop-shadow(0 0 18px #d6be80);
+      mask-image: linear-gradient(to bottom, #000 24%, #0008 75%, transparent);
+    }
+    @keyframes reveal-logo {
+      from { opacity: .35; }
+      to { opacity: 1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .logo-glow { animation: none; }
+    }
+    main { max-width: 36rem; }
+    .status { color: var(--accent); letter-spacing: .16em; font-weight: 700; }
+    .brand { font: 400 1.6rem Hurricane, cursive; }
+    h1 { font-size: clamp(2.5rem, 9vw, 4.5rem); line-height: 1.05; margin: 16px 0; }
+    p { color: var(--muted); line-height: 1.65; }
+    a {
+      display: inline-flex;
+      box-sizing: border-box;
+      align-items: center;
+      min-height: 44px;
+      margin-top: 12px;
+      padding: 10px 18px;
+      border-radius: 30px;
+      background: #d6be80;
+      color: #211b10;
+      font-weight: 700;
+      text-decoration: none;
+    }
+    a:hover { background: #e5ce94; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 4px; }
+  </style>
+</head>
+<body>
+  <div class="logo-glow" aria-hidden="true">
+    <svg class="logo-star" viewBox="0 0 100 120" fill="currentColor">
+      <path d="M50 0C57 34 70 49 100 60C70 71 57 86 50 120C43 86 30 71 0 60C30 49 43 34 50 0Z"/>
+    </svg>
+  </div>
+  <main>
+    <p class="status"><span class="brand">SELAH</span> · 404</p>
+    <h1>Página no encontrada</h1>
+    <p>Es posible que el enlace haya cambiado o que la página ya no esté disponible.</p>
+    <a id="home-link" href="/">Volver al inicio <span aria-hidden="true">&nbsp;→</span></a>
+  </main>
+  <script>
+    // GitHub Pages project sites live under the repository name.
+    const isProjectSite = location.hostname.endsWith('.github.io') &&
+      /^\/selah(?:\/|$)/i.test(location.pathname);
+    const siteRoot = isProjectSite ? '/Selah/' : '/';
+    document.getElementById('home-link').href = siteRoot;
+    const star = document.querySelector('.logo-star');
+    const logo = new Image();
+    logo.className = star.getAttribute('class');
+    logo.alt = '';
+    logo.addEventListener('load', () => star.replaceWith(logo), { once: true });
+    logo.src = location.protocol === 'file:' ? 'assets/star.svg' : siteRoot + 'assets/star.svg';
+  </script>
+</body>
+</html>
