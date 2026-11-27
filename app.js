@@ -1,6 +1,92 @@
-const experiences={share:{number:'01 / COMPARTE TU FE',title:'Lo que Dios hace en ti<br>puede inspirar a alguien más.',description:'Comparte tus testimonios, tus oraciones y los talentos que Dios te ha dado. Una reflexión, un aprendizaje o una historia de fe pueden animar a alguien más y dar gloria a Dios.',items:['Testimonios de lo que Dios hace en tu vida','Peticiones de oración para acompañarnos','Tus talentos, para inspirar y glorificar a Dios'],image:'feed.jpg',alt:'Vista del feed de Selah',label:'EL FEED · VISTA EN DESARROLLO'},connect:{number:'02 / CONECTA DE VERDAD',title:'Una conversación puede<br>ser el inicio de una amistad.',description:'Encuentra a tu comunidad en conversaciones y grupos por tema. Comparte preguntas sobre la Biblia, habla de tu fe y camina junto a personas con quienes puedes crecer en Cristo.',items:['Grupos por tema para conversar y crecer','Hasta 8 personas por grupo y 2 grupos a la vez','Conversaciones y amistades que comparten tu fe'],image:'chats.jpg',alt:'Vista de conversaciones y contactos de Selah',label:'CONVERSACIONES · VISTA EN DESARROLLO'},grow:{number:'03 / CRECE EN TU FE',title:'Acércate más a Dios.<br>Un día a la vez.',description:'Haz espacio para tu crecimiento espiritual con devocionales, un plan de lectura de la Biblia y notas para guardar lo que Dios te enseñe.',items:['Devocional de hoy','Plan de lectura de la Biblia','Mis notas y reflexiones'],image:'grow.jpg',alt:'Pantalla Crecer de Selah con devocional de hoy, plan de lectura y mis notas',label:'CRECER · VISTA EN DESARROLLO'}};
-const tabs=[...document.querySelectorAll('[role="tab"]')];
-function selectFeature(tab){const data=experiences[tab.dataset.feature];tabs.forEach(t=>{t.setAttribute('aria-selected',String(t===tab));t.tabIndex=t===tab?0:-1});document.getElementById('feature-panel').setAttribute('aria-labelledby',tab.id);document.getElementById('feature-number').textContent=data.number;document.getElementById('feature-title').innerHTML=data.title;document.getElementById('feature-description').textContent=data.description;document.getElementById('feature-list').replaceChildren(...data.items.map(text=>{const li=document.createElement('li');li.textContent=text;return li}));const image=document.getElementById('feature-image');image.src='assets/'+data.image;image.alt=data.alt;document.getElementById('screen-label').textContent=data.label}
-tabs.forEach((tab,index)=>{tab.addEventListener('click',()=>selectFeature(tab));tab.addEventListener('keydown',event=>{let next;if(event.key==='ArrowRight')next=(index+1)%tabs.length;if(event.key==='ArrowLeft')next=(index+tabs.length-1)%tabs.length;if(event.key==='Home')next=0;if(event.key==='End')next=tabs.length-1;if(next!==undefined){event.preventDefault();tabs[next].focus();selectFeature(tabs[next])}})});
 if('IntersectionObserver'in window){document.documentElement.classList.add('js-ready');const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.08});document.querySelectorAll('.reveal').forEach(element=>observer.observe(element))}
-document.getElementById('share-button')?.addEventListener('click',async()=>{const status=document.getElementById('share-status');const url=location.origin+location.pathname;try{if(navigator.share){await navigator.share({title:'Selah — Donde la fe nos une',text:'Conoce Selah, una comunidad cristiana en desarrollo para conectar, compartir y crecer en Cristo.',url});status.textContent='Gracias por compartir el propósito.'}else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url);status.textContent='Enlace copiado. Compártelo con tu comunidad.'}else{status.textContent='Copia este enlace para compartir: '+url}}catch(error){if(error.name!=='AbortError')status.textContent='Puedes compartir copiando el enlace de esta página.'}});
+document.getElementById('share-button')?.addEventListener('click',async()=>{const status=document.getElementById('share-status');const url=location.protocol==='file:'?document.querySelector('link[rel=canonical]').href:location.origin+location.pathname;try{if(navigator.share){await navigator.share({title:'Selah — Donde la fe nos une',text:document.querySelector('meta[property="og:description"]').content,url});status.textContent='Gracias por compartir el propósito.'}else if(navigator.clipboard&&window.isSecureContext){await navigator.clipboard.writeText(url);status.textContent='Enlace copiado. Compártelo con tu comunidad.'}else{status.textContent='Copia este enlace para compartir: '+url}}catch(error){if(error.name!=='AbortError')status.textContent='Puedes compartir copiando el enlace de esta página.'}});
+
+const opening = document.querySelector('.opening');
+if (opening) {
+  const stage = opening.querySelector('.opening-stage');
+  const header = document.querySelector('header');
+  const motion = window.matchMedia('(prefers-reduced-motion: no-preference)');
+  const passages = [...document.querySelectorAll('[data-scroll-reveal]')];
+  const tourLinks = [...document.querySelectorAll('.tour-nav a')];
+  const chapters = tourLinks.map(link => document.querySelector(link.hash));
+  let openingStart = 0;
+  let openingTravel = 0;
+  let lastProgress = -1;
+  let viewport = 0;
+  let passageBounds = [];
+  let chapterStarts = [];
+  let selected = -1;
+  let frame = 0;
+
+  function fraction(value) {
+    return Math.max(0, Math.min(1, value));
+  }
+
+  function paint() {
+    frame = 0;
+    const y = window.scrollY;
+    if (openingTravel) {
+      const progress = fraction((y - openingStart) / openingTravel);
+      if (progress !== lastProgress) {
+        opening.style.setProperty('--question-opacity', fraction(1 - (progress - .12) / .36));
+        opening.style.setProperty('--answer-opacity', fraction((progress - .45) / .30));
+        lastProgress = progress;
+      }
+    }
+
+    if (motion.matches) {
+      for (const passage of passageBounds) {
+        const entering = (y + viewport * .97 - passage.top) / (viewport * .30);
+        const leaving = (passage.bottom - y - viewport * .06) / (viewport * .32);
+        const opacity = fraction(Math.min(entering, leaving));
+        if (opacity !== passage.opacity) {
+          passage.element.style.setProperty('--read-opacity', opacity);
+          passage.opacity = opacity;
+        }
+      }
+    }
+
+    // Match the shortcut to the chapter at reading height, in either scroll direction.
+    let current = 0;
+    for (let i = 1; i < chapterStarts.length; i++) {
+      if (y + viewport * .45 >= chapterStarts[i]) current = i;
+    }
+    if (current !== selected) {
+      tourLinks[selected]?.removeAttribute('aria-current');
+      tourLinks[current].setAttribute('aria-current', 'location');
+      selected = current;
+    }
+  }
+
+  function schedulePaint() {
+    if (!frame) frame = requestAnimationFrame(paint);
+  }
+
+  function measure() {
+    viewport = document.documentElement.clientHeight;
+    opening.style.setProperty('--header-height', header.offsetHeight + 'px');
+    opening.classList.toggle('is-pinned', motion.matches);
+    if (stage.offsetHeight > viewport) opening.classList.remove('is-pinned');
+
+    const y = window.scrollY;
+    openingStart = opening.getBoundingClientRect().top + y;
+    openingTravel = opening.classList.contains('is-pinned') ? opening.clientHeight - stage.offsetHeight : 0;
+    chapterStarts = chapters.map(chapter => chapter.getBoundingClientRect().top + y);
+    passageBounds = passages.map(element => {
+      const { top, bottom } = element.getBoundingClientRect();
+      return { element, top: top + y, bottom: bottom + y };
+    });
+    schedulePaint();
+  }
+
+  window.addEventListener('scroll', schedulePaint, { passive: true });
+  window.addEventListener('resize', measure);
+  window.addEventListener('pageshow', measure);
+  motion.addEventListener('change', measure);
+  document.querySelector('.home-faq').addEventListener('toggle', measure, true);
+  if ('ResizeObserver' in window) {
+    const observer = new ResizeObserver(measure);
+    for (const element of [header, stage, document.body, ...passages]) observer.observe(element);
+  }
+  measure();
+}

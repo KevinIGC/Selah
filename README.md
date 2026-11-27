@@ -12,7 +12,7 @@ Pages: `index.html` introduces Selah and its app features; `equipo.html` present
 
 Community coverage includes topic groups (up to 8 members and 2 memberships per person, based on the Selah group specifications), testimonies, and prayer requests. The website presents these app features; it does not accept posts, prayers, or group memberships.
 
-Features: screenshot phone frames, animated hero, accessible interactive screenshot tabs, FAQ disclosures, native sharing or clipboard fallback, scroll reveals, and reduced-motion support. Original supplied images are retained in the parent folder; optimized website copies live in `assets`.
+Features: screenshot phone frames, centered scroll narrative, keyboard-accessible links between the three app previews, FAQ disclosures, native sharing or clipboard fallback, scroll reveals, and reduced-motion support. Original supplied images are retained in the parent folder; optimized website copies live in `assets`.
 
 There is no email collection, launch date, download link, or fabricated testimonial. App features are labeled as in development. The SELAH wordmark uses Hurricane Regular. Site text uses Arimo Regular and Bold, with Avenir and Arial fallbacks. Fonts load through Google Fonts.
 
